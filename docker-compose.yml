@@ -3,11 +3,26 @@ version: '3.3'
 services:
   auth:
     image: bitnami/oauth2-proxy
+    command: --config /oauth2-proxy.cfg
     volumes:
       - "./oauth2-proxy.cfg:/oauth2-proxy.cfg"
     environment:
-      - OAUTH2_PROXY_CLIENT_ID="${CLIENT_ID}"
+      - OAUTH2_PROXY_CLIENT_ID=${CLIENT_ID}
+      - OAUTH2_PROXY_CLIENT_SECRET=${CLIENT_SECRET}
+      - OAUTH2_PROXY_COOKIE_SECRET=${COOKIE_SECRET}
+    networks:
+      web: {}
+    depends_on: 
+      - app
+    ports:
+      - 80:80/tcp
   app:
     image: jonathangilroypowell/basic-aspnet-webapp:latest
     environment: 
-      - ASPNETCORE_URLS="http://+:8080"
+      - ASPNETCORE_URLS=http://+:8080
+    ports:
+      - 8080:8080/tcp
+    networks:
+      web: {}
+networks:
+  web: {}
