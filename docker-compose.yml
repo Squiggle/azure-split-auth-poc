@@ -20,8 +20,6 @@ services:
     image: jonathangilroypowell/basic-aspnet-webapp:latest
     environment: 
       - ASPNETCORE_URLS=http://+:8080
-    ports:
-      - 8080:8080/tcp
     networks:
       web: {}
 networks:
