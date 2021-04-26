@@ -1,0 +1,14 @@
+version: '3.3'
+
+services:
+  auth:
+    image: bitnami/oauth2-proxy
+    volumes:
+      - "./oauth2-proxy.cfg:/oauth2-proxy.cfg"
+    environment:
+      - some_vars: secrets
+      - and: config_vars
+  app:
+    image: jonathangilroypowell/basic-aspnet-webapp:latest
+    environment: 
+      - ASPNETCORE_URLS: http://+:8080
