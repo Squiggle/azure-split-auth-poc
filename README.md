@@ -47,6 +47,7 @@ The configuration of the oauth2 proxy must:
 - forward all calls to our aspnet web site
 - authenticate requests to all routes EXCEPT those explicitly identified, e.g. `/open`
 
+We use the config option `--skip-auth-regex` to skip authentication on specific endpoints.
 
 ## Azure hosting
 
@@ -59,3 +60,17 @@ The Azure hosting consists of
 - Azure AD
 -- an App Registration for our site
 -- a user, I guess?
+
+### Azure Resources
+
+See `Commands.md` for some snippets to help set up
+- A resource group (to define the region and contain the services)
+- An app service plan (to specify the compute resource - this bit is where the cost comes in)
+- A web app (to host the containers)
+
+### App Registration
+
+In Azure AD we require an App Registration, which allows this specific app (our web app) to forward authentication requests to AzureAD, and prompt for an interactive login.
+
+An App Registration requires:
+- 
