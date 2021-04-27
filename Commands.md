@@ -22,8 +22,7 @@ az webapp create --name SplitAuthDemoApp --resource-group jgp-SplitAuthDemoRG --
 ```
 az ad app create --display-name jgp-SplitAuthApp \
   --available-to-other-tenants false \
-  --reply-urls https://SplitAuthDemoApp.azurewebsites.net https://localhost:8080
-  --
+  --reply-urls https://SplitAuthDemoApp.azurewebsites.net/oauth2/callback http://localhost:80/oauth2/callback
 ```
 
 Will respond with a JSON document containing some crucial information;
